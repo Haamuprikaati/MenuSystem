@@ -6,26 +6,23 @@
 #include "GameFramework/PlayerController.h"
 #include "UObject/ConstructorHelpers.h"
 #include "PlatformTrigger.h"
+#include "Blueprint/UserWidget.h"
 #include "Engine/Engine.h"
 
 UPuzzlePlatforms_GI::UPuzzlePlatforms_GI(const FObjectInitializer& ObjectInitializer)
 {
 
-	UE_LOG(LogTemp, Warning, TEXT("GI Contructor"))
+	ConstructorHelpers::FClassFinder<UUserWidget> MenuBPClass(TEXT("/Game/MenuSystem/WBP_MainMenu"));
+	if (!ensure(MenuBPClass.Class != nullptr)) return;
 
-	 static ConstructorHelpers::FClassFinder<APlatformTrigger> PlatformTriggerBPClass(TEXT("/Game/BP/PlatformTrigger_BP"));
-	 if (DefaultPreviewClassBP.Class != NULL)
-		{
-	 	PreviewClass = DefaultPreviewClassBP.Class;
-		}
-
+	MenuClass = MenuBPClass.Class;
 }
 
 void UPuzzlePlatforms_GI::Init()
 {
 	Super::Init();
 
-	UE_LOG(LogTemp, Warning, TEXT("GI Init"))
+	UE_LOG(LogTemp, Warning, TEXT("Found class %s"), *MenuClass->GetName())
 
 }
 
