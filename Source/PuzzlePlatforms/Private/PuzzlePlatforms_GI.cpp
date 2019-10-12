@@ -4,12 +4,21 @@
 #include "PuzzlePlatforms_GI.h"
 
 #include "GameFramework/PlayerController.h"
+#include "UObject/ConstructorHelpers.h"
+#include "PlatformTrigger.h"
 #include "Engine/Engine.h"
 
 UPuzzlePlatforms_GI::UPuzzlePlatforms_GI(const FObjectInitializer& ObjectInitializer)
 {
 
 	UE_LOG(LogTemp, Warning, TEXT("GI Contructor"))
+
+	 static ConstructorHelpers::FClassFinder<APlatformTrigger> PlatformTriggerBPClass(TEXT("/Game/BP/PlatformTrigger_BP"));
+	 if (DefaultPreviewClassBP.Class != NULL)
+		{
+	 	PreviewClass = DefaultPreviewClassBP.Class;
+		}
+
 }
 
 void UPuzzlePlatforms_GI::Init()
