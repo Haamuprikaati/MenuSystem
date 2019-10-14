@@ -54,10 +54,21 @@ private:
 		UPROPERTY(meta = (BindWidget))
 		class UButton* BackButton;
 
+		UPROPERTY(meta = (BindWidget))
+		class UButton* JoinGameButton;
+
+		UPROPERTY(meta = (BindWidget))
+		class UEditableTextBox* IPAddressField;
+
 		UFUNCTION()
 		void OpenMainMenu();
 
 		UPROPERTY(meta = (BindWidget))
 		class UWidget* MainMenu;
+
+		UFUNCTION()
+		void JoinServer();
+
+		FText IPAddress;
 
 };
