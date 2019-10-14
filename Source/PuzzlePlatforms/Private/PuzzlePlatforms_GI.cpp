@@ -26,6 +26,23 @@ void UPuzzlePlatforms_GI::Init()
 
 }
 
+void UPuzzlePlatforms_GI::LoadMenu()
+{
+	/*template<typename WidgetT, typename OwnerT>
+	WidgetT * CreateWidget
+	(
+		OwnerT * OwningObject,
+		TSubclassOf< UUserWidget > UserWidgetClass,
+		FName WidgetName
+	)
+	*/
+	if (!ensure(MenuClass != nullptr)) return;
+	UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuClass);
+	if (!ensure(Menu != nullptr)) return;
+
+	Menu->AddToViewport();
+}
+
 void UPuzzlePlatforms_GI::Host()
 {
 	UEngine* Engine = GetEngine();

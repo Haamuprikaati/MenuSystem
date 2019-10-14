@@ -17,6 +17,9 @@ class PUZZLEPLATFORMS_API UPuzzlePlatforms_GI : public UGameInstance
 public:
 		UPuzzlePlatforms_GI(const FObjectInitializer& ObjectInitializer);
 
+		UFUNCTION(BlueprintCallable, Category = "Setup")
+		void LoadMenu();
+
 		virtual void Init();
 
 		UFUNCTION(Exec) //Can be called from console while playing as developer cheat kinda like scry menu
