@@ -41,6 +41,18 @@ void UPuzzlePlatforms_GI::LoadMenu()
 	if (!ensure(Menu != nullptr)) return;
 
 	Menu->AddToViewport();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	if (!ensure(PlayerController != nullptr)) return;
+
+	FInputModeUIOnly InputMode;
+	InputMode.SetWidgetToFocus(Menu->TakeWidget());
+	InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetInputMode(InputMode);
+	PlayerController->bShowMouseCursor = true;
+
+
 }
 
 void UPuzzlePlatforms_GI::Host()
