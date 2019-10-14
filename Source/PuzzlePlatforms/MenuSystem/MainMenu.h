@@ -69,6 +69,4 @@ private:
 		UFUNCTION()
 		void JoinServer();
 
-		FText IPAddress;
-
 };
