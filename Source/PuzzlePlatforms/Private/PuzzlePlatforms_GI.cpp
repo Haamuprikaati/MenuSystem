@@ -7,6 +7,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "PlatformTrigger.h"
 #include "Blueprint/UserWidget.h"
+#include "MenuSystem/MainMenu.h"
 #include "Engine/Engine.h"
 
 UPuzzlePlatforms_GI::UPuzzlePlatforms_GI(const FObjectInitializer& ObjectInitializer)
@@ -28,16 +29,8 @@ void UPuzzlePlatforms_GI::Init()
 
 void UPuzzlePlatforms_GI::LoadMenu()
 {
-	/*template<typename WidgetT, typename OwnerT>
-	WidgetT * CreateWidget
-	(
-		OwnerT * OwningObject,
-		TSubclassOf< UUserWidget > UserWidgetClass,
-		FName WidgetName
-	)
-	*/
 	if (!ensure(MenuClass != nullptr)) return;
-	UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuClass);
+	UMainMenu* Menu = CreateWidget<UMainMenu>(this, MenuClass);
 	if (!ensure(Menu != nullptr)) return;
 
 	Menu->AddToViewport();
@@ -52,7 +45,7 @@ void UPuzzlePlatforms_GI::LoadMenu()
 	PlayerController->SetInputMode(InputMode);
 	PlayerController->bShowMouseCursor = true;
 
-
+	Menu->SetMenuInterface(this);
 }
 
 void UPuzzlePlatforms_GI::Host()
