@@ -5,24 +5,18 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "MenuInterface.h"
+#include "MenuWidget.h"
 #include "InGameMenu.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PUZZLEPLATFORMS_API UInGameMenu : public UUserWidget
+class PUZZLEPLATFORMS_API UInGameMenu : public UMenuWidget
 {
 	GENERATED_BODY()
 
 public:
-
-	void SetMenuInterface(IMenuInterface* MenuInterface);
-
-	UFUNCTION(BlueprintCallable)
-	void Setup();
-
-	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 
 protected:
 

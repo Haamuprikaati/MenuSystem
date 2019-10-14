@@ -21,6 +21,9 @@ public:
 		UFUNCTION(BlueprintCallable, Category = "Setup")
 		void LoadMenu();
 
+		UFUNCTION(BlueprintCallable, Category = "Setup")
+		void InGameLoadMenu();
+
 		virtual void Init();
 
 		UFUNCTION(Exec) //Can be called from console while playing as developer cheat kinda like scry menu
@@ -32,6 +35,8 @@ public:
 private:
 
 	TSubclassOf<class UUserWidget> MenuClass;
+
+	TSubclassOf<class UUserWidget> InGameMenuClass;
 
 	class UMainMenu* Menu;
 };

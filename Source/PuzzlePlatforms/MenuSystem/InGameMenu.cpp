@@ -25,41 +25,6 @@ bool UInGameMenu::Initialize()
 
 }
 
-void UInGameMenu::Setup()
-{
-	this->AddToViewport();
-
-	UWorld* World = GetWorld();
-	if (!ensure(World != nullptr)) return;
-
-	APlayerController* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) return;
-
-	FInputModeUIOnly InputMode;
-	InputMode.SetWidgetToFocus(this->TakeWidget());
-	InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
-	PlayerController->SetInputMode(InputMode);
-	PlayerController->bShowMouseCursor = true;
-}
-
-//Called when another level loads to get rid of menu automatically
-void UInGameMenu::OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld)
-{
-	RemoveFromViewport();
-
-	auto* World = GetWorld();
-	if (!ensure(World != nullptr)) return;
-
-	auto* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) return;
-
-	FInputModeGameOnly InputMode;
-	PlayerController->SetInputMode(InputMode);
-	PlayerController->bShowMouseCursor = false;
-	Super::OnLevelRemovedFromWorld(InLevel, InWorld);
-}
-
 void UInGameMenu::Cancel()
 {
 	RemoveFromViewport();
