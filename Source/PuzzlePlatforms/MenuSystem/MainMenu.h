@@ -21,8 +21,6 @@ public:
 
 	void Setup();
 
-	void Teardown();
-
 	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 	
 protected:
@@ -31,14 +29,35 @@ protected:
 
 private:
 
-		UPROPERTY(meta = (BindWidget))
-		class UButton* Host;
+		IMenuInterface* MenuInterface;
 
 		UPROPERTY(meta = (BindWidget))
-		class UButton* Join;
+		class UWidgetSwitcher* MenuSwitcher;
+
+		//Located in Main Menu
+		UPROPERTY(meta = (BindWidget))
+		class UButton* HostButton;
+
+		UPROPERTY(meta = (BindWidget))
+		class UButton* JoinButton;
+
+		UPROPERTY(meta = (BindWidget))
+		class UWidget* JoinMenu;
+
+		UFUNCTION()
+		void OpenJoinMenu();
 
 		UFUNCTION()
 		void HostServer();
 
-		IMenuInterface* MenuInterface;
+		//Located in Join Menu
+		UPROPERTY(meta = (BindWidget))
+		class UButton* BackButton;
+
+		UFUNCTION()
+		void OpenMainMenu();
+
+		UPROPERTY(meta = (BindWidget))
+		class UWidget* MainMenu;
+
 };
