@@ -27,10 +27,12 @@ public:
 		virtual void Init();
 
 		UFUNCTION(Exec) //Can be called from console while playing as developer cheat kinda like scry menu
-		void Host();
+		void Host() override;
 
 		UFUNCTION(Exec)
-		void Join(const FString& Address);
+		void Join(const FString& Address) override;
+
+		virtual void LoadMainMenu() override;
 
 private:
 

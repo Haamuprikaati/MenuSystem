@@ -16,33 +16,25 @@ bool UInGameMenu::Initialize()
 
 	// Bind dynamic functions for buttons
 	if (!ensure(CancelButton != nullptr)) return false;
-	CancelButton->OnClicked.AddDynamic(this, &UInGameMenu::Cancel);
+	CancelButton->OnClicked.AddDynamic(this, &UInGameMenu::CancelPressed);
 
 	if (!ensure(QuitButton != nullptr)) return false;
-	QuitButton->OnClicked.AddDynamic(this, &UInGameMenu::Quit);
+	QuitButton->OnClicked.AddDynamic(this, &UInGameMenu::QuitPressed);
 
 	return true;
 
 }
 
-void UInGameMenu::Cancel()
+void UInGameMenu::CancelPressed()
 {
-	RemoveFromViewport();
-
-	auto* World = GetWorld();
-	if (!ensure(World != nullptr)) return;
-
-	auto* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) return;
-
-	FInputModeGameOnly InputMode;
-	PlayerController->SetInputMode(InputMode);
-	PlayerController->bShowMouseCursor = false;
-
+	Teardown();
 }
 
-void UInGameMenu::Quit()
+void UInGameMenu::QuitPressed()
 {
-	UGameplayStatics::OpenLevel(GetWorld(), "MainMenu");
-
+	if (MenuInterface != nullptr)
+	{
+		Teardown();
+		MenuInterface->LoadMainMenu();
+	}
 }

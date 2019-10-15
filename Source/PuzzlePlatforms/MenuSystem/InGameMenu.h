@@ -32,9 +32,9 @@ private:
 	class UButton* QuitButton;
 
 	UFUNCTION()
-	void Quit();
+	void QuitPressed();
 
 	UFUNCTION()
-	void Cancel();
+	void CancelPressed();
 
 };

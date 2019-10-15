@@ -21,6 +21,8 @@ public:
 
 	void Setup();
 
+	void Teardown();
+
 	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 
 protected:
